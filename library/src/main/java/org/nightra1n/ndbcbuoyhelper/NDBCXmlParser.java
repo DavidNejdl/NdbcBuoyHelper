@@ -18,13 +18,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-public class FeedParser {
-	private static final String TAG = LogUtils.makeLogTag(FeedParser.class);
+public class NDBCXmlParser {
+	private static final String TAG = LogUtils.makeLogTag(NDBCXmlParser.class);
 
 	final URL rssUrl;
 
-	public FeedParser(String url) {
-        LogUtils.LOGV(TAG, "FeedParser: url = " + url);
+	public NDBCXmlParser(String url) {
+        LogUtils.LOGV(TAG, "NDBCXmlParser: url = " + url);
         try {
             this.rssUrl = new URL(url);
         } catch (MalformedURLException e) {
@@ -36,6 +36,7 @@ public class FeedParser {
 	public ArrayList<Buoy> parse(int maxItems) {
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		try {
+			saxParserFactory.setNamespaceAware(true);
 			SAXParser saxParser = saxParserFactory.newSAXParser();
 			RSSHandler rssHandler = new RSSHandler(maxItems);
 
@@ -64,9 +65,13 @@ public class FeedParser {
 
 	private InputStream getInputStream() {
 		try {
-			URLConnection urlConnection = rssUrl.openConnection();
+			HttpsURLConnection urlConnection = (HttpsURLConnection) rssUrl.openConnection();
+			SSLSocketFactory socketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+			((HttpsURLConnection) urlConnection).setSSLSocketFactory(socketFactory);
 			urlConnection.setConnectTimeout(Constants.DEFAULT_TIMEOUT_CONNECT);
 			urlConnection.setReadTimeout(Constants.DEFAULT_TIMEOUT_READ);
+			urlConnection.setInstanceFollowRedirects(true);
+
 			return urlConnection.getInputStream();
 		} catch (IOException e) {
 			LogUtils.LOGV(TAG, "IOException: " + e.toString());

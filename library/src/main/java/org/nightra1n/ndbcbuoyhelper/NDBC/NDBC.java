@@ -10,21 +10,21 @@ public class NDBC {
 	private static final String TAG = LogUtils.makeLogTag(NDBC.class);
 
 	// Block Island = 44097
-	private static final String URL_STATION_PAGE = "http://www.ndbc.noaa.gov/station_page.php?station=NDBCID";
-	private static final String URL_LATEST_OBS = "http://www.ndbc.noaa.gov/data/latest_obs/NDBCID.rss";
-	private static final String URL_5DAY = "http://www.ndbc.noaa.gov/data/5day2/NDBCID_5day.txt";
+	private static final String URL_STATION_PAGE = "https://www.ndbc.noaa.gov/station_page.php?station=NDBCID";
+	private static final String URL_LATEST_OBS = "https://www.ndbc.noaa.gov/data/latest_obs/NDBCID.rss";
+	private static final String URL_5DAY = "https://www.ndbc.noaa.gov/data/5day2/NDBCID_5day.txt";
 	private static final String URL_PLOT_WVHT =
-			"http://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=sght&uom=E&time_diff=-4&time_label=EDT";
+			"https://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=sght&uom=E&time_diff=-4&time_label=EDT";
 	private static final String URL_PLOT_DPD =
-			"http://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=dmpd&uom=E&time_diff=-4&time_label=EDT";
+			"https://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=dmpd&uom=E&time_diff=-4&time_label=EDT";
 	private static final String URL_PLOT_MWD =
-			"http://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=wvdr&uom=E&time_diff=-4&time_label=EDT";
+			"https://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=wvdr&uom=E&time_diff=-4&time_label=EDT";
 	private static final String URL_PLOT_WTMP =
-			"http://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=wtmp&uom=E&time_diff=-4&time_label=EDT";
+			"https://www.ndbc.noaa.gov/plot_wave.php?station=NDBCID&meas=wtmp&uom=E&time_diff=-4&time_label=EDT";
 	// Wave energy versus frequency (and period)
     // Spectral Density
 	private static final String URL_PLOT_FREQ =
-			"http://www.ndbc.noaa.gov/spec_plot.php?station=NDBCID";
+			"https://www.ndbc.noaa.gov/spec_plot.php?station=NDBCID";
 
 
 	private static String replaceNDBCid(String urlString, String NDBC_id) {

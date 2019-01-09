@@ -3,7 +3,7 @@ package org.nightra1n.ndbcbuoyhelper.helper;
 import android.text.format.DateUtils;
 
 public class Constants {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 
     public static final boolean DEFAULT_AUTO_REFRESH = true;
 	public static final int DEFAULT_UPDATE_INTERVAL_MILLIS = 1800000;
