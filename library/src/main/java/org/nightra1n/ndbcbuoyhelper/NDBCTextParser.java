@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocketFactory;
+
 public class NDBCTextParser {
     private static final String TAG = LogUtils.makeLogTag(NDBCTextParser.class);
 
@@ -163,9 +166,13 @@ public class NDBCTextParser {
 
     private InputStream getInputStream() {
         try {
-            URLConnection urlConnection = rssUrl.openConnection();
+            HttpsURLConnection urlConnection = (HttpsURLConnection) rssUrl.openConnection();
+            SSLSocketFactory socketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+            ((HttpsURLConnection) urlConnection).setSSLSocketFactory(socketFactory);
             urlConnection.setConnectTimeout(Constants.DEFAULT_TIMEOUT_CONNECT);
             urlConnection.setReadTimeout(Constants.DEFAULT_TIMEOUT_READ);
+            urlConnection.setInstanceFollowRedirects(true);
+
             return urlConnection.getInputStream();
         } catch (IOException e) {
             LogUtils.LOGE(TAG, "IOException: ", e);
